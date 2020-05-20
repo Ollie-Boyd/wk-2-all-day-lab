@@ -48,7 +48,14 @@ class TestCustomer < Minitest::Test
         assert_equal(500, @customer1.wallet())
         assert_equal({:Carlsberg=>500, :Strongbow=>800, :Guinness=>1000, :Tennents_Super=>800}, @pub.drinks)
         assert_equal(10000, @pub.till)
+    end
 
+    def test_consume_multiple_drinks()
+        @customer3.consume_drink(:Guinness, @pub)
+        @customer3.consume_drink(:Carlsberg, @pub)
+        assert_equal(0, @customer3.wallet())
+        assert_equal({:Strongbow=>800, :Tennents_Super=>800}, @pub.drinks)
+        assert_equal(11500, @pub.till)
     end
 
 
