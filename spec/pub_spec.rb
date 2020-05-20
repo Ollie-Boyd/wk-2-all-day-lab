@@ -39,8 +39,19 @@ class TestPub < Minitest::Test
 
     end
 
-     
+    def test_get_price_of_drink_by_name
+        assert_equal(1000, @pub.get_price_of_drink_by_name(:Guinness))
+    end
 
+    def test_make_purchase
+        @pub.make_purchase(:Guinness)
+        assert_equal({:Carlsberg=>500, :Strongbow=>800, :Tennents_Super=>800}, @pub.drinks)
+        assert_equal(11000, @pub.till)
+   
+    end
+
+     
+    
  #   def test_can_sell_drink
     
 

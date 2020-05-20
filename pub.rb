@@ -19,9 +19,17 @@ class Pub
 
     def remove_drink_by_name(drink_name)
         @drinks.delete(drink_name)
-        #@drinks.reject{ |key, value| key == drink_name}
     end
 
-    #def get_a_drnk
+    def get_price_of_drink_by_name(drink_name)
+        return @drinks[drink_name]
+    end
 
+    def make_purchase(drink_name)
+        cost = get_price_of_drink_by_name(drink_name)
+        
+        increase_till_balance(cost)
+        remove_drink_by_name(drink_name)
+        
+    end
 end
